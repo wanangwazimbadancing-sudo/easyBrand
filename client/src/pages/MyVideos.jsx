@@ -49,7 +49,7 @@ const MyVideos = () => {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/page-data/videos");
+        const response = await fetch("https://easybrand.onrender.com/api/page-data/videos");
         const data = await response.json();
 
         const savedVideos = Array.isArray(data?.videos) ? data.videos : [];

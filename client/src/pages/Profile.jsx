@@ -17,7 +17,7 @@ e.preventDefault();
 setLoading(true);
 
 try {
-const response = await axios.post("http://localhost:3000/api/contact",{name,email,message},{withCredentials:true});
+const response = await axios.post("https://easybrand.onrender.com/api/contact",{name,email,message},{withCredentials:true});
 
 if(response.data.success) {
   toast.success(response.data.message);

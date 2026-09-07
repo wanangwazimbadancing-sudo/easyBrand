@@ -27,7 +27,7 @@ const ContentAdmin = () => {
   const fetchContents = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:3000/api/content");
+      const response = await axios.get("https://easybrand.onrender.com/api/content");
       setContents(response.data.contents);
     } catch (err) {
       console.error("Error fetching content:", err);
@@ -46,9 +46,9 @@ const ContentAdmin = () => {
     e.preventDefault();
     try {
       if (editingId) {
-        await axios.put(`http://localhost:3000/api/content/${editingId}`, formData);
+        await axios.put(`https://easybrand.onrender.com/api/content/${editingId}`, formData);
       } else {
-        await axios.post("http://localhost:3000/api/content", formData);
+        await axios.post("https://easybrand.onrender.com/api/content", formData);
       }
       await fetchContents();
       resetForm();
@@ -68,7 +68,7 @@ const ContentAdmin = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this content?")) {
       try {
-        await axios.delete(`http://localhost:3000/api/content/${id}`);
+        await axios.delete(`https://easybrand.onrender.com/api/content/${id}`);
         await fetchContents();
       } catch (err) {
         console.error("Error deleting content:", err);

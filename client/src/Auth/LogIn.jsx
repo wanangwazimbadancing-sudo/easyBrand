@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const API_URL = 'http://localhost:3000/api/auth';
+const API_URL = 'https://easybrand.onrender.com/api/auth';
 
 const formatCountdown = (seconds) => {
   const mins = String(Math.floor(seconds / 60)).padStart(2, '0');

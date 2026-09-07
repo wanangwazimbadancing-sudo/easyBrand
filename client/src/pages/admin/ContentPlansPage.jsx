@@ -268,7 +268,7 @@ function ContentEditor({ videos, setVideos }) {
       const formData = new FormData();
       formData.append('video', file);
 
-      const response = await axios.post('http://localhost:3000/api/content/upload', formData, {
+      const response = await axios.post('https://easybrand.onrender.com/api/content/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 
@@ -460,10 +460,10 @@ const ContentPlansPage = () => {
         setError('');
 
         const [plansRes, videosRes, contactRes, faqsRes] = await Promise.all([
-          axios.get('http://localhost:3000/api/page-data/plans'),
-          axios.get('http://localhost:3000/api/page-data/videos'),
-          axios.get('http://localhost:3000/api/page-data/contact'),
-          axios.get('http://localhost:3000/api/page-data/faqs'),
+          axios.get('https://easybrand.onrender.com/api/page-data/plans'),
+          axios.get('https://easybrand.onrender.com/api/page-data/videos'),
+          axios.get('https://easybrand.onrender.com/api/page-data/contact'),
+          axios.get('https://easybrand.onrender.com/api/page-data/faqs'),
         ]);
 
         const plansData = Array.isArray(plansRes.data.plans) ? plansRes.data.plans : [];
@@ -514,16 +514,16 @@ const ContentPlansPage = () => {
         .filter((video) => video.title || video.url);
 
       // Save plans
-      await axios.post('http://localhost:3000/api/page-data/plans', { plans: serializedPlans });
+      await axios.post('https://easybrand.onrender.com/api/page-data/plans', { plans: serializedPlans });
       
       // Save videos
-      await axios.post('http://localhost:3000/api/page-data/videos', { videos: sanitizedVideos });
+      await axios.post('https://easybrand.onrender.com/api/page-data/videos', { videos: sanitizedVideos });
       
       // Save contact
-      await axios.post('http://localhost:3000/api/page-data/contact', { contact });
+      await axios.post('https://easybrand.onrender.com/api/page-data/contact', { contact });
       
       // Save FAQs
-      await axios.post('http://localhost:3000/api/page-data/faqs', { faqs });
+      await axios.post('https://easybrand.onrender.com/api/page-data/faqs', { faqs });
 
       toast.success('All data saved successfully');
     } catch (err) {

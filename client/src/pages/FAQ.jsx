@@ -9,7 +9,7 @@ const FAQ = () => {
     useEffect(() => {
         const fetchFaqs = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/api/page-data/faqs");
+                const response = await axios.get("https://easybrand.onrender.com/api/page-data/faqs");
                 const data = Array.isArray(response.data?.faqs) ? response.data.faqs : [];
                 setFaqs(data);
             } catch (error) {

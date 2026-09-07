@@ -56,7 +56,7 @@ export default function BookingFlow() {
   useEffect(() => {
     const fetchPlans = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/page-data/plans");
+        const response = await axios.get("https://easybrand.onrender.com/api/page-data/plans");
         const savedPlans = Array.isArray(response.data?.plans) ? response.data.plans : [];
         const normalized = savedPlans.map(normalizePlan);
         setPlans(normalized);
@@ -82,7 +82,7 @@ export default function BookingFlow() {
     setLoading(true);
     setError("");
     try {
-      const response = await axios.post("http://localhost:3000/api/booking", {
+      const response = await axios.post("https://easybrand.onrender.com/api/booking", {
         fullName: form.fullName,
         email: form.email,
         phone: form.phone,

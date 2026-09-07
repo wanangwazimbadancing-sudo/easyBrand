@@ -14,7 +14,7 @@ const BookingsPage = () => {
 
   const fetchBookings = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/booking", {
+      const response = await axios.get("https://easybrand.onrender.com/api/booking", {
         withCredentials: true,
       });
       setBookings(response.data.bookings);

@@ -33,7 +33,7 @@ const MessagesPage = () => {
 
   const fetchMessages = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/contact", {
+      const response = await axios.get("https://easybrand.onrender.com/api/contact", {
         withCredentials: true,
       });
 
