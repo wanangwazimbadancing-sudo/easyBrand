@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Home, Video, CalendarDays, Bell, Calendar, Plus, LucideCircleQuestionMark, LogOut } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -63,7 +63,7 @@ const MobileBar = ({ isAdmin, onLogout }) => {
         </button>
       )}
 
-      <div className="z-111 relative sm:flex md:hidden w-[100vw] bg-white">
+      <div className="z-111 relative sm:flex md:hidden w-[100vw] bg-white border-t border-slate-200">
         <ul className="flex w-full justify-between list-none p-[0_4px] m-[0] bg-white/50 backdrop-blur-[10px]">
           {visibleItems.map(({ id, label, path, icon: Icon }) => {
             const isActive = active === id;
