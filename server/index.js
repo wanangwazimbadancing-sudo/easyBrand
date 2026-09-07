@@ -18,12 +18,23 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
+const allowedOrigins = [
+  "https://happyzimba.onrender.com",
+  process.env.FRONTEND_URL,
+].filter(Boolean);
+
 
 
 // Middleware
 app.use(
   cors({
-    origin: "https://happyzimba.onrender.com" || [process.env.FRONTEND_URL, process.env.BACKEND_URL],
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Origin is not allowed by CORS"));
+    },
     credentials: true,
   })
 );
