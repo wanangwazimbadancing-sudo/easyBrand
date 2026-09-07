@@ -1,3 +1,11 @@
+#NODE_MODULES
 node_modules/
+# Logs
+logs
+*.log
+#env
 .env
-users.db
+#build
+build/
+#dist
+dist/

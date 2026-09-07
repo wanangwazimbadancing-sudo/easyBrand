@@ -1,0 +1,51 @@
+[
+  {
+    "id": "plan-1787066223071",
+    "name": "starter",
+    "tagline": "finding your foot",
+    "iconBg": "bg-purple-100",
+    "iconColor": "text-purple-500",
+    "monthly": "29",
+    "yearly": "289",
+    "save": "17%",
+    "description": "Small creators",
+    "features": [
+      "access to core resources",
+      "community support"
+    ]
+  },
+  {
+    "id": "plan-1787066528984",
+    "name": "standard",
+    "tagline": "growth ",
+    "iconBg": "bg-purple-100",
+    "iconColor": "text-purple-500",
+    "monthly": "59",
+    "yearly": "588",
+    "save": "17%",
+    "description": "real growth",
+    "features": [
+      "every thing in starter plan plus +",
+      "advanced resources",
+      "priority support"
+    ]
+  },
+  {
+    "id": "plan-1787066802631",
+    "name": "proPlan",
+    "tagline": "business",
+    "iconBg": "bg-purple-100",
+    "iconColor": "text-purple-500",
+    "monthly": "89",
+    "yearly": "888",
+    "save": "17%",
+    "description": "Plan description goes here",
+    "features": [
+      "everything in standard plus +",
+      "1-on-1 strategy call",
+      "Exclusive content",
+      "Social media strategy",
+      "account consultation"
+    ]
+  }
+]
