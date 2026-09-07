@@ -76,17 +76,19 @@ app.use((err, req, res, next) => {
   });
 });
 
-const db_connected =  connectDB();
+const startServer = async () => {
+  try {
+    await connectDB();
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error("Server startup failed:", error);
+    process.exit(1);
+  }
+};
 
-
-if (db_connected) {
-   app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-}
-else{
-  res.status(500).send("server error")
-}
+startServer();
 
 
 
