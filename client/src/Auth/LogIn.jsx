@@ -3,6 +3,18 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const API_URL = 'https://easybrand.onrender.com/api/auth';
+const REQUEST_TIMEOUT_MS = 15000;
+
+const fetchWithTimeout = async (url, options) => {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
+  try {
+    return await fetch(url, { ...options, signal: controller.signal });
+  } finally {
+    clearTimeout(timeoutId);
+  }
+};
 
 const formatCountdown = (seconds) => {
   const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
@@ -47,7 +59,7 @@ const LogInPage = ({ onLogin }) => {
     setLoading(true);
 
     try {
-      const response = await fetch(`${API_URL}/request-otp`, {
+      const response = await fetchWithTimeout(`${API_URL}/request-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -71,7 +83,11 @@ const LogInPage = ({ onLogin }) => {
       setLoginStep('verify');
       setMessage(`Your OTP is ${data.otp}. Enter it below to continue.`);
     } catch (err) {
-      setError('Error communicating with server: ' + err.message);
+      setError(
+        err.name === 'AbortError'
+          ? 'The server took too long to respond. Please try again.'
+          : 'Error communicating with server: ' + err.message
+      );
     } finally {
       setLoading(false);
     }
@@ -83,7 +99,7 @@ const LogInPage = ({ onLogin }) => {
     setLoading(true);
 
     try {
-      const response = await fetch(`${API_URL}/verify-otp`, {
+      const response = await fetchWithTimeout(`${API_URL}/verify-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -104,7 +120,11 @@ const LogInPage = ({ onLogin }) => {
       onLogin?.();
       nav('/edit');
     } catch (err) {
-      setError('Error verifying OTP: ' + err.message);
+      setError(
+        err.name === 'AbortError'
+          ? 'The server took too long to respond. Please try again.'
+          : 'Error verifying OTP: ' + err.message
+      );
     } finally {
       setLoading(false);
     }
@@ -116,7 +136,7 @@ const LogInPage = ({ onLogin }) => {
     setLoading(true);
 
     try {
-      const response = await fetch(`${API_URL}/request-otp`, {
+      const response = await fetchWithTimeout(`${API_URL}/request-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -140,7 +160,11 @@ const LogInPage = ({ onLogin }) => {
       setOtpExpiresAt(expiresAt);
       setMessage(`New OTP is ${data.otp}. Enter it below to continue.`);
     } catch (err) {
-      setError('Error resending OTP: ' + err.message);
+      setError(
+        err.name === 'AbortError'
+          ? 'The server took too long to respond. Please try again.'
+          : 'Error resending OTP: ' + err.message
+      );
     } finally {
       setLoading(false);
     }
